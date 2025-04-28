@@ -8,16 +8,7 @@ from ..detection.inference import detect_text_blocks
 from ..context.inference import recognize_text
 
 
-def main():
-    print("Запуск OCR Pipeline...")
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--img", type=str, required=True, help="Путь до файла.")
-    parser.add_argument(
-        "--out", type=str, required=True, help="Путь до выходного файла."
-    )
-    args = parser.parse_args()
-
-    img = cv2.imread(args.img)
+async def run_pipeline_from_images(img):
     if img is None:
         print("Не удалось загрузить изображение.")
         return
@@ -43,6 +34,23 @@ def main():
             return
 
         result.append({"bbox": {"x": x, "y": y, "width": w, "height": h}, "text": text})
+
+    return result
+
+
+def main():
+    print("Запуск OCR Pipeline...")
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--img", type=str, required=True, help="Путь до файла.")
+    parser.add_argument(
+        "--out", type=str, required=True, help="Путь до выходного файла."
+    )
+    args = parser.parse_args()
+
+    img = cv2.imread(args.img)
+    result = run_pipeline_from_images(img)
+    if result is None:
+        print("Не удалось выполнить OCR Pipeline.")
 
     with open(args.out, "w", encoding="utf-8") as f:
         json.dump(result, f, ensure_ascii=False, indent=2)
