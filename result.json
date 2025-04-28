@@ -1,0 +1,20 @@
+[
+  {
+    "bbox": {
+      "x": 512.0,
+      "y": 341.25,
+      "width": 1024.0,
+      "height": 136.5
+    },
+    "text": "some text here"
+  },
+  {
+    "bbox": {
+      "x": 512.0,
+      "y": 341.25,
+      "width": 1024.0,
+      "height": 136.5
+    },
+    "text": "some text here"
+  }
+]
