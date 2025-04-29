@@ -2,7 +2,7 @@
 #!/usr/bin/env python3
 import argparse
 import json
-from metriki import wer, cer
+from metrics import wer, cer
 
 def load_json_data(file_path: str) -> dict:
     """Загружает JSON-файл с текстами"""
