@@ -1,18 +1,6 @@
+from .inference_yolo import load_model, detect_from_yolo
+
+model = load_model("yolov8_ru_handtext.pt")
+
 def detect_text_blocks(image):
-
-    height, width, _ = image.shape
-
-    return [
-        {
-            "x": width * 0.25,
-            "y": height * 0.25,
-            "width": width * 0.5,
-            "height": height * 0.1,
-        },
-        {
-            "x": width * 0.25,
-            "y": height * 0.25,
-            "width": width * 0.5,
-            "height": height * 0.1,
-        },
-    ]
+    return detect_from_yolo(model, image)
