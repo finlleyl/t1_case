@@ -66,6 +66,14 @@ WER = $(\frac{число замен, вставок, удалений слов}{
    * Детекция подписей/печатей (отдельная YOLO-модель)
    * Определение контекста (NER/глубокие эмбеддинги текста)
 
+<img title="C4 (Context)" src="context.png">
+
+<img title="c4 (container)" src="Container.png">
+
+<img title="c4 (component)" src="Component.drawio.png">
+
+
+
 ## 5. Пайплайн
 
 <img src="pipeline.png">
