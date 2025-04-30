@@ -1,0 +1,54 @@
+[
+  {
+    "data":   { "image": "handwritten_test_images/a2.png" },
+    "meta":   { "doc_type": "анкета" }
+  },
+  {
+    "data":   { "image": "handwritten_test_images/a3.png" },
+    "meta":   { "doc_type": "анкета" }
+  },
+  {
+    "data":   { "image": "handwritten_test_images/a4.png" },
+    "meta":   { "doc_type": "анкета" }
+  },
+  {
+    "data":   { "image": "handwritten_test_images/a5.png" },
+    "meta":   { "doc_type": "анкета" }
+  },
+  {
+    "data":   { "image": "handwritten_test_images/a6.png" },
+    "meta":   { "doc_type": "анкета" }
+  },
+  {
+    "data":   { "image": "handwritten_test_images/pass_1.png" },
+    "meta":   { "doc_type": "паспорт" }
+  },
+  {
+    "data":   { "image": "handwritten_test_images/pass_2_1.png" },
+    "meta":   { "doc_type": "паспорт" }
+  },
+  {
+    "data":   { "image": "handwritten_test_images/pass_2_2.png" },
+    "meta":   { "doc_type": "паспорт" }
+  },
+  {
+    "data":   { "image": "handwritten_test_images/pass_2_3.png" },
+    "meta":   { "doc_type": "паспорт" }
+  },
+  {
+    "data":   { "image": "handwritten_test_images/pass_2_4.png" },
+    "meta":   { "doc_type": "паспорт" }
+  },
+  {
+    "data":   { "image": "handwritten_test_images/TK_1.jpg" },
+    "meta":   { "doc_type": "военник" }
+  },
+  {
+    "data":   { "image": "handwritten_test_images/TK_2.jpg" },
+    "meta":   { "doc_type": "военник" }
+  },
+  {
+    "data":   { "image": "handwritten_test_images/TK_3.jpg" },
+    "meta":   { "doc_type": "военник" }
+  }
+]

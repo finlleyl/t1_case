@@ -1,9 +1,29 @@
-import os
-
+import numpy as np
 from .inference_yolo import load_model, detect_from_yolo
 
-weights_path = os.path.join(os.path.dirname(__file__), "yolov8_ru_handtext.pt")
-model = load_model(weights_path)
+# Конфигурация YOLO
+YOLO_WEIGHTS = "src/ocr_bank_docs/detection/yolov8_ru_handtext.pt"
+YOLO_CONF_THRESHOLD = 0.4
 
-def detect_text_blocks(image):
-    return detect_from_yolo(model, image)
+# Инициализация модели
+yolo_model = load_model(YOLO_WEIGHTS)
+
+def detect_and_recognize(image: np.ndarray):
+    """
+    Выполняет только детекцию боксов через YOLO и возвращает список словарей:
+    {"bbox": {x, y, width, height}, "conf": float, "class": str}
+    """
+    yolo_boxes = detect_from_yolo(yolo_model, image, conf=YOLO_CONF_THRESHOLD)
+    results = []
+    for yb in yolo_boxes:
+        results.append({
+            "bbox": {
+                "x": float(yb["x"]),
+                "y": float(yb["y"]),
+                "width": float(yb["width"]),
+                "height": float(yb["height"])
+            },
+            "conf": float(yb["conf"]),
+            "class": yb.get("class")
+        })
+    return results

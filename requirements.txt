@@ -12,3 +12,4 @@ ctcdecode
 jamspell
 huggingface-hub
 matplotlib
+easyocr==1.7.0
