@@ -1,7 +1,7 @@
 from ultralytics import YOLO
 
 def train_yolo(data_yaml: str, weights_out: str, epochs=50, imgsz=640, batch=16):
-    model = YOLO("yolov8n.pt")  # или ваш предобученный
+    model = YOLO("yolov8n.pt")
     model.train(
         data=data_yaml,
         epochs=epochs,
@@ -11,7 +11,6 @@ def train_yolo(data_yaml: str, weights_out: str, epochs=50, imgsz=640, batch=16)
         name="yolov8_handtext",
         pretrained=True,
     )
-    # копируем best.pt в нужное место
     model.model.save(weights_out)
 
 if __name__ == "__main__":
