@@ -178,3 +178,4 @@ Output
 - [Russian Handwritten Letters (Kaggle)](https://www.kaggle.com/datasets/olgabelitskaya/handwritten-russian-letters)
 - [Cyrillic Handwriting (Kaggle)](https://www.kaggle.com/datasets/constantinwerner/cyrillic-handwriting-dataset)
 - [HWR200 (Hugging Face)](https://huggingface.co/datasets/AntiplagiatCompany/HWR200)
+- [Russian Handwritten Text(for detection)](https://universe.roboflow.com/max-kuznetsov/russian-handwritten-text)
