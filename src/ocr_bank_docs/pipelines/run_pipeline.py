@@ -53,6 +53,11 @@ async def run_pipeline_from_images(img, сlassification_model):
             "пол",
             "серия",
             "номер",
+            "должность",
+            "оборотная сторона" "срок полномочий лиц",
+            "подпись",
+            "подписи",
+            "клиента",
         ]:
             continue
 
