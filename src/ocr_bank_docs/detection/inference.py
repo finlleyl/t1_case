@@ -17,5 +17,5 @@ def detect_text_blocks(image):
     return detect_from_yolo(model, image)
 
 
-def is_handwritten_text(image):
-    return True if classify(image)[0] == "handwritten" else False
+def is_handwritten_text(image, сlassification_model):
+    return True if classify(image, сlassification_model)[0] == "handwritten" else False
