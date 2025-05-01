@@ -8,7 +8,7 @@ from ..detection.inference import detect_text_blocks, is_handwritten_text
 from ..context.inference import recognize_text
 
 
-async def run_pipeline_from_images(img):
+async def run_pipeline_from_images(img, сlassification_model):
     if img is None:
         print("Не удалось загрузить изображение.")
         return
@@ -28,7 +28,7 @@ async def run_pipeline_from_images(img):
         x, y, w, h = bbox["x"], bbox["y"], bbox["width"], bbox["height"]
         cropped = img[int(y) : int(y + h), int(x) : int(x + w)]
 
-        if is_handwritten_text(cropped):
+        if is_handwritten_text(cropped, сlassification_model):
             text = recognize_text(cropped)
             if text is None:
                 print("Не удалось распознать текст.")

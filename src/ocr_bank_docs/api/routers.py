@@ -1,7 +1,7 @@
 from io import BytesIO
 import json
 import cv2
-from fastapi import APIRouter, File, UploadFile
+from fastapi import APIRouter, File, Form, UploadFile
 from fastapi.responses import HTMLResponse, JSONResponse
 from matplotlib import pyplot as plt
 import numpy as np
@@ -13,18 +13,18 @@ router = APIRouter(prefix="/ocr", tags=["optical character recognition"])
 
 
 @router.post("")
-async def ocr(file: UploadFile = File(...)):
+async def ocr(classification_model: str = Form(...), file: UploadFile = File(...)):
     image = await file.read()
 
     nparr = np.frombuffer(image, np.uint8)
     img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
 
-    results = await run_pipeline_from_images(img)
+    results = await run_pipeline_from_images(img, classification_model)
 
     return JSONResponse(content=results)
 
 
-@router.post("/upload/")
+@router.post("/bbox/")
 async def create_upload_file(file: UploadFile = File(...), json_data: str = ""):
     # Load image from file
     image = Image.open(BytesIO(await file.read()))

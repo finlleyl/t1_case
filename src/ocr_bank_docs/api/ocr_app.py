@@ -4,7 +4,14 @@ from PIL import Image, ImageDraw, ImageFont
 import json
 import io
 
+MODEL_OPTIONS = [
+    "openai",
+    "hf-hub",
+]
+
+
 API_URL = "http://localhost:8000/ocr"
+
 
 def draw_bboxes_on_image(image, json_data):
     draw = ImageDraw.Draw(image)
@@ -16,13 +23,13 @@ def draw_bboxes_on_image(image, json_data):
         draw.text((x, y - 10), item["text"], font=font, fill="red")
     return image
 
-def main():
-    st.title("OCR с FastAPI и Streamlit")
 
-    # Инициализация session_state
-    if 'json_data' not in st.session_state:
+def main():
+    st.title("T1 OCR")
+
+    if "json_data" not in st.session_state:
         st.session_state.json_data = None
-    if 'annotated_image' not in st.session_state:
+    if "annotated_image" not in st.session_state:
         st.session_state.annotated_image = None
 
     uploaded_file = st.file_uploader(
@@ -32,14 +39,21 @@ def main():
     if uploaded_file:
         image = Image.open(uploaded_file)
         st.image(image, caption="Загруженное изображение", use_column_width=True)
-
+        model_choice = st.sidebar.selectbox(
+            "Выберите модель для классификации", options=MODEL_OPTIONS
+        )
+        st.sidebar.write(f"Выбрана модель: **{model_choice}**")
         if st.button("Извлечь текст"):
             with st.spinner("Обработка..."):
                 files = {"file": uploaded_file.getvalue()}
-                response = requests.post(API_URL, files=files)
+                response = requests.post(
+                    API_URL, files=files, data={"classification_model": model_choice}
+                )
                 if response.status_code == 200:
                     st.session_state.json_data = response.json()
-                    st.session_state.annotated_image = draw_bboxes_on_image(image.copy(), st.session_state.json_data)
+                    st.session_state.annotated_image = draw_bboxes_on_image(
+                        image.copy(), st.session_state.json_data
+                    )
 
         # Показываем результаты, если они есть в session_state
         if st.session_state.annotated_image is not None:
@@ -48,7 +62,7 @@ def main():
                 caption="Изображение с bounding box'ами",
                 use_column_width=True,
             )
-        
+
         if st.session_state.json_data is not None:
             st.download_button(
                 label="Скачать JSON",
@@ -57,6 +71,7 @@ def main():
                 mime="application/json",
             )
             st.json(st.session_state.json_data)
+
 
 if __name__ == "__main__":
     main()
