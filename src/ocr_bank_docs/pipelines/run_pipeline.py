@@ -36,6 +36,26 @@ async def run_pipeline_from_images(img):
         else:
             continue
 
+        if text.lower().strip() in [
+            "анкета",
+            "паспорт",
+            "документ",
+            "заявление",
+            "договор",
+            "место жительства",
+            "место регистрации",
+            "индекс",
+            "адрес",
+            "фамилия",
+            "имя",
+            "отчество",
+            "дата рождения",
+            "пол",
+            "серия",
+            "номер",
+        ]:
+            continue
+
         result.append({"bbox": {"x": x, "y": y, "width": w, "height": h}, "text": text})
 
     return result

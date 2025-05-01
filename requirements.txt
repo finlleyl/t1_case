@@ -2,14 +2,5 @@ opencv-python==4.11.0.86
 fastapi~=0.115.12
 open_clip_torch
 streamlit~=1.44.1
-numpy~=2.2.5
 ultralytics==8.2.0
-torch
-torchvision
-torchaudio
-python-Levenshtein
-ctcdecode
-jamspell
-huggingface-hub
 matplotlib
-easyocr==1.7.0

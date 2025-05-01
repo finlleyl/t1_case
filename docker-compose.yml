@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  api:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./src:/app/src
+      - ./configs:/app/configs
+    environment:
+      - PYTHONPATH=/app
+    restart: unless-stopped
+    command: uvicorn src.ocr_bank_docs.api.main:app --host 0.0.0.0 --port 8000
+
+  streamlit:
+    build: .
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./src:/app/src
+      - ./configs:/app/configs
+    environment:
+      - PYTHONPATH=/app
+    restart: unless-stopped
+    command: streamlit run src/ocr_bank_docs/api/ocr_app.py --server.port=8501 --server.address=0.0.0.0 
