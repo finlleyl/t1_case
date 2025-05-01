@@ -137,7 +137,7 @@ Orchestration – единый pipeline (run_pipeline.py) объединяет �
 
 <img src="ML_arch.drawio.png">
 
-<img src="Container_2.png">
+<img src="container.png">
 
 ## ⚙️ Пайплайн
 
@@ -168,8 +168,7 @@ Output
 
 <img src="pipeline.png">
 
-
-<img src="sequense%20c4.png">
+<img src="sequence.png">
 
 
 ## 📚 Данные и дообучение
